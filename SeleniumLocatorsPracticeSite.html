@@ -105,21 +105,24 @@ The Quality Analyst Selenium Testing Practice<br>
 </section>
 <hr>
 
-
 <section id="registerSection" style="display:none;">
   <h2>Register</h2>
 
   <label>Name *</label><br>
-  <input id="regName"><br><br>
+  <input id="regName"><br>
+  <div id="nameError" class="error"></div><br>
 
   <label>Last Name *</label><br>
-  <input id="regLastName"><br><br>
+  <input id="regLastName"><br>
+  <div id="lastNameError" class="error"></div><br>
 
   <label>Phone *</label><br>
-  <input id="regPhone"><br><br>
+  <input id="regPhone"><br>
+  <div id="phoneError" class="error"></div><br>
 
   <label>Email *</label><br>
-  <input id="regEmail" type="email"><br><br>
+  <input id="regEmail"><br>
+  <div id="emailError" class="error"></div><br>
 
   <label>Gender *</label><br>
   <input type="radio" name="regGender"> Male
@@ -141,6 +144,7 @@ The Quality Analyst Selenium Testing Practice<br>
 
   <div id="registerMsg"></div>
 </section>
+
 
 <section id="loginSection" style="display:none;">
   <h2>Login</h2>
@@ -1104,7 +1108,9 @@ function openForgotModal() {
 function closeForgotModal() {
   forgotModal.style.display = "none";
 }
-
+function generateRegistrationId() {
+  return "REG-" + Math.floor(100000 + Math.random() * 900000);
+}
 function register() {
 
   const name = document.getElementById("regName").value.trim();
@@ -1116,48 +1122,56 @@ function register() {
   const gender = document.querySelector('input[name="regGender"]:checked');
   const msg = document.getElementById("registerMsg");
 
-  // Reset message
   msg.innerHTML = "";
 
-  // Mandatory checks
   if (!name || !lastName || !phone || !email) {
-    msg.innerHTML =
-      "<span class='error'>All fields are mandatory</span>";
+    msg.innerHTML = "<span class='error'>All fields are mandatory</span>";
     return;
   }
 
-  // Email format check
-  if (!email.includes("@")) {
+  if (!/^[A-Za-z]+$/.test(name) || !/^[A-Za-z]+$/.test(lastName)) {
+    msg.innerHTML =
+      "<span class='error'>Name and Last Name must contain only letters</span>";
+    return;
+  }
+
+  if (!/^[0-9]{10}$/.test(phone)) {
+    msg.innerHTML =
+      "<span class='error'>Phone number must be exactly 10 digits</span>";
+    return;
+  }
+
+  if (!/^[^ ]+@[^ ]+\.com$/.test(email)) {
     msg.innerHTML =
       "<span class='error'>Enter a valid email address</span>";
     return;
   }
 
-  // Gender check
   if (!gender) {
     msg.innerHTML =
       "<span class='error'>Please select gender</span>";
     return;
   }
 
-  // Age check
   if (isNaN(age) || age < 18) {
     msg.innerHTML =
       "<span class='error'>Age must be 18 or above</span>";
     return;
   }
 
-  // Terms check
   if (!terms) {
     msg.innerHTML =
       "<span class='error'>Please accept the terms</span>";
     return;
   }
 
-  // SUCCESS
+  const regId = generateRegistrationId();
   msg.innerHTML =
-    "<span class='success'>Registration Successful</span>";
+    "<span class='success'>Registration Successful! Your Registration ID is: <b>" +
+    regId +
+    "</b></span>";
 }
+
 function calculate(){interestResult.innerText="Interest = "+(principal.value*years.value*rate.value/100)}
 function openModal(){fpModal.style.display="block"}
 function closeModal(){fpModal.style.display="none"}
