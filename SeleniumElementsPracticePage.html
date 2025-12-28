@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dummy Selenium Practice Page</title>
+<style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h1 { text-align: center; margin-bottom: 30px; }
+
+    /* Container for sections - two column layout */
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .section {
+        flex: 1 1 calc(50% - 20px); /* two columns */
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box;
+        min-width: 300px;
+    }
+
+    label { display: inline-block; width: 130px; margin-bottom: 5px; }
+    input, select { margin-bottom: 10px; }
+    button { padding: 5px 15px; cursor: pointer; margin-top: 5px; }
+    table { border-collapse: collapse; width: 100%; }
+    table, th, td { border: 1px solid #000; }
+    th, td { padding: 8px; text-align: center; }
+    td input { width: 80px; text-align: center; }
+    #delayedDropdownMenu button { width: 100%; margin-bottom: 5px; }
+</style>
+</head>
+<body>
+
+<h1>Dummy Selenium Practice Page</h1>
+
+<!-- Subscribe Button -->
+<div style="text-align:center; margin-bottom:30px;">
+    <a href="https://www.youtube.com/@thequalityanalysttt" target="_blank">
+        <button style="background-color:#FF0000; color:white; font-size:16px; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+            Subscribe to The Quality Analyst
+        </button>
+    </a>
+</div>
+
+<div class="container">
+
+    <!-- Login -->
+    <div class="section">
+        <h2>Login Form</h2>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter username"><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter password"><br>
+        <button onclick="login()">Login</button><br><br>
+        <label for="predefinedName">Name Textbox:</label>
+        <input type="text" id="predefinedName" value="Enter a Name">
+    </div>
+
+    <!-- Disabled Buttons Example -->
+    <div class="section">
+        <h2>Disabled Buttons Example</h2>
+        <label for="actionName">Type your name to enable button:</label>
+        <input type="text" id="actionName" placeholder="Type here">
+        <button id="btnNameAction" disabled onclick="alert('Button enabled by typing clicked!')">Submit Name</button><br><br>
+        <input type="checkbox" id="enableButtonCheckbox">
+        <label for="enableButtonCheckbox">Check to enable button</label><br>
+        <button id="btnCheckboxAction" disabled onclick="alert('Button enabled by checkbox clicked!')">Submit Option</button>
+    </div>
+
+    <!-- Checkboxes & Radio Buttons -->
+    <div class="section">
+        <h2>Checkboxes</h2>
+        <input type="checkbox" id="option1" value="Option1" checked><label for="option1">Option 1</label><br>
+        <input type="checkbox" id="option2" value="Option2"><label for="option2">Option 2</label><br>
+        <input type="checkbox" id="option3" value="Option3"><label for="option3">Option 3</label>
+        <h2>Radio Buttons</h2>
+        <input type="radio" id="male" name="gender" value="Male"><label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="Female"><label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender" value="Other"><label for="other">Other</label>
+    </div>
+
+    <!-- Dropdowns -->
+    <div class="section">
+        <h2>Dropdowns</h2>
+        <label for="singleSelect">Single Select:</label>
+        <select id="singleSelect">
+            <option value="">--Select--</option>
+            <option value="USA">USA</option>
+            <option value="India">India</option>
+            <option value="UK">UK</option>
+            <option value="Canada">Canada</option>
+        </select><br>
+        <label for="multiSelect">Multi Select:</label>
+        <select id="multiSelect" multiple size="4">
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Blue">Blue</option>
+            <option value="Yellow">Yellow</option>
+        </select>
+    </div>
+
+    <!-- Alerts & Images -->
+    <div class="section">
+        <h2>Alerts</h2>
+        <button onclick="showAlert()">Simple Alert</button>
+        <button onclick="showConfirm()">Confirm Alert</button>
+        <button onclick="showPrompt()">Prompt Alert</button>
+        <h2>Images</h2>
+        <img src="https://drive.google.com/file/d/1YXqsaJ4hqD3sUVk23mExnk9FO5lKqRcK/view?usp=drive_link" alt="Placeholder Image">
+    </div>
+
+    <!-- Tables -->
+    <div class="section">
+        <h2>Table</h2>
+        <table>
+            <thead><tr><th>ID</th><th>Name</th><th>Country</th></tr></thead>
+            <tbody>
+                <tr><td>1</td><td>Alice</td><td>USA</td></tr>
+                <tr><td>2</td><td>Bob</td><td>India</td></tr>
+                <tr><td>3</td><td>Charlie</td><td>UK</td></tr>
+                <tr><td>4</td><td>David</td><td>Canada</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Editable Spreadsheet -->
+    <div class="section">
+        <h2>Spreadsheet Table (Simple Interest)</h2>
+        <table id="spreadsheetTable">
+            <thead>
+                <tr><th>Row</th><th>Principal</th><th>Rate (%)</th><th>Time (Years)</th><th>Interest</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="number" value="1000" class="principal"></td>
+                    <td><input type="number" value="5" class="rate"></td>
+                    <td><input type="number" value="2" class="time"></td>
+                    <td><input type="text" class="interest" readonly></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="number" value="2000" class="principal"></td>
+                    <td><input type="number" value="7" class="rate"></td>
+                    <td><input type="number" value="3" class="time"></td>
+                    <td><input type="text" class="interest" readonly></td>
+                </tr>
+            </tbody>
+        </table><br>
+        <button onclick="calculateInterest(document.getElementById('spreadsheetTable'))">Calculate Interest</button>
+        <button onclick="openSpreadsheetTab()">Open Spreadsheet in New Tab</button>
+    </div>
+
+    <!-- New Tab / Window & Delayed Dropdown -->
+    <div class="section">
+        <h2>New Tab & Window</h2>
+        <button onclick="openNewTab()">Open New Tab</button>
+        <button onclick="openNewWindow()">Open New Window</button>
+        <h2>Delayed Dropdown on Click</h2>
+        <button id="delayedDropdownBtn">Click Me ▼</button>
+        <div id="delayedDropdownMenu" style="display:none; margin-top:5px;">
+            <button onclick="alert('Option 1 selected')">Option 1</button>
+            <button onclick="alert('Option 2 selected')">Option 2</button>
+            <button onclick="alert('Option 3 selected')">Option 3</button>
+        </div>
+        <p id="dropdownTimerText" style="color:red; font-style:italic;"></p>
+    </div>
+
+    <!-- Double Click & Delayed Enable -->
+    <div class="section">
+        <h2>Double Click Button</h2>
+        <button id="doubleClickBtn">Double Click Me</button>
+        <p id="doubleClickMsg" style="color:green; font-weight:bold;"></p>
+        <h2>Enable Button After Delay</h2>
+        <button id="checkThisBtn">Check This</button>
+        <button id="specialActionBtn" disabled>Special Action</button>
+        <p id="delayMsg" style="color:blue; font-style:italic;"></p>
+    </div>
+
+    <!-- Useful Links -->
+    <div class="section" style="flex-basis: 100%;">
+        <h2>Useful Links</h2>
+        <ul>
+            <li><a href="https://www.google.com" target="_blank">Google</a></li>
+            <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
+            <li><a href="https://www.youtube.com/@QAlyst" target="_blank">YouTube</a></li>
+            <li><a href="https://github.com/qalyst21/QAlyst-Testing" target="_blank">GitHub</a></li>
+            <li><a href="https://www.stackoverflow.com" target="_blank">Stack Overflow</a></li>
+        </ul>
+    </div>
+	
+	
+
+</div>
+
+<script>
+/* Your existing JS remains the same */
+document.getElementById("actionName").addEventListener("input", function(){
+    document.getElementById("btnNameAction").disabled = !this.value.trim();
+});
+document.getElementById("enableButtonCheckbox").addEventListener("change", function(){
+    document.getElementById("btnCheckboxAction").disabled = !this.checked;
+});
+function login(){const u=document.getElementById("username").value;const p=document.getElementById("password").value;if(!u||!p){alert("Enter username and password");return;}alert("Login Successful!\nUser: "+u+"\nPass: "+p);}
+function showAlert(){alert("This is a simple alert!");}
+function showConfirm(){alert(confirm("Do you like Selenium?")?"Great!":"Okay!");}
+function showPrompt(){const n=prompt("Enter your name:");alert(n?"Hello "+n:"No name entered");}
+function openNewTab(){window.open("https://www.google.com","_blank");}
+function openNewWindow(){window.open("https://www.bing.com","_blank","width=800,height=600,resizable=yes");}
+function calculateInterest(table){table.querySelectorAll("tbody tr").forEach(r=>{const p=parseFloat(r.querySelector(".principal").value)||0;const rate=parseFloat(r.querySelector(".rate").value)||0;const t=parseFloat(r.querySelector(".time").value)||0;r.querySelector(".interest").value=((p*rate*t)/100).toFixed(2);});}
+function openSpreadsheetTab(){const table=document.getElementById("spreadsheetTable");const newTab=window.open("","_blank");newTab.document.write("<html><head><title>Spreadsheet</title></head><body>");newTab.document.write("<h2>Spreadsheet Table</h2>");newTab.document.write(table.outerHTML);newTab.document.write("<br><button onclick='calculateInterest(document.getElementById(\"spreadsheetTable\"))'>Calculate Interest</button>");newTab.document.write("<script>function calculateInterest(table){table.querySelectorAll('tbody tr').forEach(r=>{const p=parseFloat(r.querySelector('.principal').value)||0;const rate=parseFloat(r.querySelector('.rate').value)||0;const t=parseFloat(r.querySelector('.time').value)||0;r.querySelector('.interest').value=((p*rate*t)/100).toFixed(2);});}<\/script>");newTab.document.write("</body></html>");newTab.document.close();}
+document.getElementById("delayedDropdownBtn").addEventListener("click", function() {
+    const dropdown = document.getElementById("delayedDropdownMenu");
+    const timerText = document.getElementById("dropdownTimerText");
+    dropdown.style.display = "none";
+    timerText.textContent = "Dropdown options will appear in 3 minutes... ⏳";
+    setTimeout(() => {dropdown.style.display = "block"; timerText.textContent = "Dropdown options are now available!";}, 180000);
+});
+document.getElementById("doubleClickBtn").addEventListener("dblclick", function() {const msg=document.getElementById("doubleClickMsg");msg.textContent="Double Click Successful! 🎉";alert("You double-clicked the button!");});
+document.getElementById("checkThisBtn").addEventListener("click", function() {const btn=document.getElementById("specialActionBtn");const msg=document.getElementById("delayMsg");msg.textContent="Special Action button will be enabled in 15 seconds... ⏳";setTimeout(()=>{btn.disabled=false;msg.textContent="Special Action button is now enabled!";},15000);});
+</script>
+
+</body>
+</html>
