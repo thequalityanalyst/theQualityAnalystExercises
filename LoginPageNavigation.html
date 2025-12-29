@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Page - Practice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    section {
+      border: 2px solid #ccc;
+      padding: 20px;
+      width: 400px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN SECTION -->
+  <section id="loginSection">
+    <h2>🔐 Login Page</h2>
+
+    <label>Username:</label><br>
+    <input type="text" id="username" name="username"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password" name="password"><br><br>
+
+    <button id="loginBtn" onclick="login()">Login</button>
+  </section>
+
+  <!-- HOME SECTION -->
+  <section id="homeSection" style="display:none;">
+    <h2>🏠 Home Page</h2>
+    <p>Welcome! You are now on the home page.</p>
+
+    <button id="logoutBtn" onclick="logout()">Logout</button>
+  </section>
+
+  <script>
+    function login() {
+      // Change page title
+      document.title = "Home Page - Dashboard";
+
+      // Update browser history
+      history.pushState({ page: "home" }, "", "#home");
+
+      // Toggle sections
+      document.getElementById("loginSection").style.display = "none";
+      document.getElementById("homeSection").style.display = "block";
+    }
+
+    function logout() {
+      // Change page title back
+      document.title = "Login Page - Practice";
+
+      // Update browser history
+      history.pushState({ page: "login" }, "", "#login");
+
+      // Toggle sections
+      document.getElementById("homeSection").style.display = "none";
+      document.getElementById("loginSection").style.display = "block";
+    }
+
+    // Handle browser back & forward buttons
+    window.onpopstate = function (event) {
+      if (event.state && event.state.page === "home") {
+        document.title = "Home Page - Dashboard";
+        document.getElementById("loginSection").style.display = "none";
+        document.getElementById("homeSection").style.display = "block";
+      } else {
+        document.title = "Login Page - Practice";
+        document.getElementById("homeSection").style.display = "none";
+        document.getElementById("loginSection").style.display = "block";
+      }
+    };
+  </script>
+
+</body>
+</html>
