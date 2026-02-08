@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form and Div Input Practice</title>
+
+  <script>
+    function validateLogin() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var message = document.getElementById("loginMessage");
+
+      if (username === "admin" && password === "admin123") {
+        message.style.color = "green";
+        message.innerText = "Login successful!";
+      } else {
+        message.style.color = "red";
+        message.innerText = "Invalid username or password";
+      }
+
+      return false; // prevent actual form submission
+    }
+  </script>
+</head>
+
+<body>
+
+  <h2>Form and Div Input Practice</h2>
+
+  <!-- Form Section -->
+  <form onsubmit="return validateLogin();">
+    <h3>Login Form</h3>
+
+    <label>Username:</label><br>
+    <input id="username" name="username" type="text" placeholder="Enter username"><br><br>
+
+    <label>Password:</label><br>
+    <input id="password" name="password" type="password" placeholder="Enter password"><br><br>
+
+    <!-- Login Button -->
+    <button id="loginButton" type="submit">
+      Login
+    </button>
+
+    <br><br>
+
+    <!-- Validation Message -->
+    <div id="loginMessage"></div>
+  </form>
+
+  <br><hr><br>
+
+  <!-- Div Section -->
+  <div>
+    <h3>Search Section</h3>
+
+    <label>Search:</label><br>
+    <input id="search" type="text" placeholder="Search here">
+  </div>
+
+</body>
+</html>
